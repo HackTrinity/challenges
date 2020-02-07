@@ -90,7 +90,7 @@ public class AppVerticle extends AbstractVerticle {
         return vertx
             .createHttpServer(new HttpServerOptions().setLogActivity(true))
             .requestHandler(router)
-            .rxListen(8080)
+            .rxListen(80)
             .ignoreElement();
     }
 }

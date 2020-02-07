@@ -17,9 +17,4 @@
             </includes>
         </fileSet>
     </fileSets>
-    <files>
-        <file>
-            <source>flag.txt</source>
-        </file>
-    </files>
 </assembly>

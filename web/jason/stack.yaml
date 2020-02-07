@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+  app:
+    image: $chad_docker_registry/challenges/jason
+    environment:
+      - KEEP_ROOT=1
+      - CHALLENGE_IP=192.168.138.1/17
+    networks:
+      - challenge

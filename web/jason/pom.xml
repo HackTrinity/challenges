@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>12</java.version>
+        <java.version>11</java.version>
 
         <vertx.version>3.8.0</vertx.version>
         <main.verticle>com.lololol.jason.AppVerticle</main.verticle>
@@ -122,18 +122,20 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.31.0</version>
+                <version>0.33.0</version>
                 <configuration>
                     <images>
                         <image>
                             <alias>app</alias>
-                            <name>ht20/jason:latest</name>
+                            <name>${dockerRegistry}/challenges/jason:latest</name>
                             <build>
-                                <from>openjdk:12-alpine</from>
+                                <from>${dockerRegistry}/chad/challbase</from>
                                 <runCmds>
-                                    <cmd>apk --no-cache add imagemagick ffmpeg curl socat</cmd>
-                                    <cmd>curl -L https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_amd64 -o /usr/local/bin/yq</cmd>
+                                    <cmd>apk --no-cache add openjdk11-jre imagemagick ffmpeg curl socat</cmd>
+                                    <cmd>curl -L https://github.com/mikefarah/yq/releases/download/3.1.0/yq_linux_amd64 -o /usr/local/bin/yq</cmd>
                                     <cmd>chmod +x /usr/local/bin/yq</cmd>
+                                    <cmd>ln -s /run/secrets/flag.txt /flag.txt</cmd>
+                                    <cmd>ln -s /run/secrets/flag.txt /maven/flag.txt</cmd>
                                 </runCmds>
                                 <assembly>
                                     <descriptor>assembly.xml</descriptor>
@@ -145,15 +147,15 @@
                                     io.vertx.core.Launcher run ${main.verticle}
                                 </cmd>
                                 <ports>
-                                    <port>8080/tcp</port>
+                                    <port>80/tcp</port>
                                 </ports>
                                 <healthCheck>
-                                    <cmd>curl -f http://localhost:8080</cmd>
+                                    <cmd>curl -sSf http://localhost</cmd>
                                 </healthCheck>
                             </build>
                             <run>
                                 <ports>
-                                    <port>8080:8080/tcp</port>
+                                    <port>8080:80/tcp</port>
                                 </ports>
                             </run>
                         </image>
