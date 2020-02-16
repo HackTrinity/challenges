@@ -6,5 +6,7 @@ as garbage in the description.
 
 Can you find a way to get the flag without even knowing the question?!
 
-**Note: To avoid spam, emails from CTFd for this challenge will only be delivered email addresses on
+You can find the server at `192.168.139.1`.
+
+**Note: To avoid spam, emails from CTFd for this challenge will only be to delivered email addresses on
 [temp-mail.org](https://temp-mail.org/)**
