@@ -11,3 +11,5 @@ services:
       - MAIL_USERNAME=yeetf@example.com
       - MAIL_PASSWORD=hunter2
       - MAIL_TLS=yes
+    networks:
+      - challenge

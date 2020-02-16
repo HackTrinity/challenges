@@ -11,6 +11,8 @@ RUN apk --no-cache add musl-dev gcc libffi-dev git sqlite libffi python3 python3
 
 ENV UPDATE_CHECK=no
 
-COPY entrypoint.sh /
-COPY ctfd.db /opt/CTFd/CTFd/ctfd.db
-CMD ["/entrypoint.sh"]
+COPY pre-drop.sh /etc/challbase/
+COPY challenge-entrypoint.sh /
+COPY ctfd.db CTFd/ctfd.db
+RUN setcap 'cap_net_bind_service=+ep' /usr/bin/python3.8 && chown -R nobody:nogroup .
+CMD ["/challenge-entrypoint.sh"]

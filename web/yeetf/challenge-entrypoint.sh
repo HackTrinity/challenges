@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -z "$FLAG" ] && FLAG="$(cat /run/secrets/flag.txt)"
+[ -z "$FLAG" ] && FLAG="$(cat /flag.txt)"
 sqlite3 CTFd/ctfd.db "UPDATE flags SET content = '$FLAG' WHERE id = 1;"
 
 exec gunicorn 'CTFd:create_app()' \
