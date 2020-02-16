@@ -13,6 +13,11 @@ ENV UPDATE_CHECK=no
 
 COPY pre-drop.sh /etc/challbase/
 COPY challenge-entrypoint.sh /
+
+COPY render_version.patch /tmp/
 COPY ctfd.db CTFd/ctfd.db
-RUN setcap 'cap_net_bind_service=+ep' /usr/bin/python3.8 && chown -R nobody:nogroup .
+RUN setcap 'cap_net_bind_service=+ep' /usr/bin/python3.8 && \
+    patch -p1 < /tmp/render_version.patch && \
+    rm /tmp/render_version.patch && \
+    chown -R nobody:nogroup .
 CMD ["/challenge-entrypoint.sh"]

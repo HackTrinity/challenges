@@ -1,0 +1,19 @@
+diff --git a/CTFd/themes/core/templates/base.html b/CTFd/themes/core/templates/base.html
+index 89725a8..2d81400 100644
+--- a/CTFd/themes/core/templates/base.html
++++ b/CTFd/themes/core/templates/base.html
+@@ -183,10 +183,13 @@
+ 	</main>
+ 
+ 	<footer class="footer">
+-		<div class="container text-center">
++		<div class="container text-center" style="line-height: normal;">
+ 			<a href="https://ctfd.io" class="text-secondary">
+ 				<small class="text-muted">Powered by CTFd</small>
+ 			</a>
++			<span>
++				<small class="text-muted"><br> Version {{ get_config('ctf_version') }}</small>
++			</span>
+ 		</div>
+ 	</footer>
+ 
