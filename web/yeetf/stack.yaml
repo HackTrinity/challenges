@@ -1,0 +1,13 @@
+version: '3.5'
+services:
+  app:
+    image: $chad_docker_registry/challenges/yeetf
+    environment:
+      - CHALLENGE_IP=192.168.139.1/17
+      - MAILFROM_ADDR=yeetf@example.com
+      - MAIL_SERVER=mail.example.com
+      - MAIL_PORT=587
+      - MAIL_USEAUTH=yes
+      - MAIL_USERNAME=yeetf@example.com
+      - MAIL_PASSWORD=hunter2
+      - MAIL_TLS=yes
