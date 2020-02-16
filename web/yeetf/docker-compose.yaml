@@ -1,0 +1,19 @@
+version: '3'
+services:
+  app:
+    image: $DOCKER_REGISTRY/challenges/yeetf
+    build:
+      context: .
+      args:
+        - DOCKER_REGISTRY=$DOCKER_REGISTRY
+    environment:
+      - FLAG=CTF{Test}
+      - MAILFROM_ADDR=$MAILFROM_ADDR
+      - MAIL_SERVER=$MAIL_SERVER
+      - MAIL_PORT=$MAIL_PORT
+      - MAIL_USEAUTH=$MAIL_USEAUTH
+      - MAIL_USERNAME=$MAIL_USERNAME
+      - MAIL_PASSWORD=$MAIL_PASSWORD
+      - MAIL_TLS=$MAIL_TLS
+    ports:
+      - 8080:80
