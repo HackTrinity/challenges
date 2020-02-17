@@ -20,4 +20,5 @@ RUN setcap 'cap_net_bind_service=+ep' /usr/bin/python3.8 && \
     patch -p1 < /tmp/render_version.patch && \
     rm /tmp/render_version.patch && \
     chown -R nobody:nogroup .
+EXPOSE 80/tcp
 CMD ["/challenge-entrypoint.sh"]
