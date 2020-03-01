@@ -1,0 +1,19 @@
+ARG DOCKER_REGISTRY
+FROM $DOCKER_REGISTRY/chad/challbase
+
+RUN apk --no-cache add nginx
+RUN setcap 'cap_net_bind_service=+ep' /usr/sbin/nginx
+
+COPY meme.jpg /opt/html/
+COPY pass.txt /tmp/
+RUN echo -n "admin:" > /etc/nginx/.htpasswd && \
+    apk --no-cache add openssl && \
+    openssl passwd -stdin -apr1 < /tmp/pass.txt >> /etc/nginx/.htpasswd && \
+    apk --no-cache del openssl && \
+    rm /tmp/pass.txt
+COPY nginx.conf /etc/nginx/nginx.conf
+
+COPY pre-drop.sh /etc/challbase/
+
+EXPOSE 80/tcp
+CMD ["nginx", "-g", "daemon off;"]

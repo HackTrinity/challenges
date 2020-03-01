@@ -1,0 +1,20 @@
+version: '3'
+services:
+  server:
+    image: $DOCKER_REGISTRY/challenges/smell_2_server
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+      args:
+        - DOCKER_REGISTRY=$DOCKER_REGISTRY
+    ports:
+      - 8080:80
+  client:
+    image: $DOCKER_REGISTRY/challenges/smell_2_client
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+      args:
+        - DOCKER_REGISTRY=$DOCKER_REGISTRY
+    environment:
+      - HOST=server

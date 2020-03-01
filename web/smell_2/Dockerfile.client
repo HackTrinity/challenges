@@ -1,0 +1,8 @@
+ARG DOCKER_REGISTRY
+FROM $DOCKER_REGISTRY/chad/challbase
+
+RUN apk --no-cache add curl
+
+COPY activity.sh pass.txt /
+
+CMD ["/activity.sh"]
