@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: $DOCKER_REGISTRY/challenges/smell_1
+    build:
+      context: .
+      args:
+        - DOCKER_REGISTRY=$DOCKER_REGISTRY

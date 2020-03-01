@@ -1,0 +1,8 @@
+version: '3.5'
+services:
+  app:
+    image: $chad_docker_registry/challenges/smell_1
+    environment:
+      - CHALLENGE_IP=192.168.141.1/17
+    networks:
+      - challenge
