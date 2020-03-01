@@ -1,0 +1,18 @@
+version: '3'
+services:
+  server:
+    image: $DOCKER_REGISTRY/challenges/smell_3_server
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+      args:
+        - DOCKER_REGISTRY=$DOCKER_REGISTRY
+    ports:
+      - 8443:443
+  client:
+    image: $DOCKER_REGISTRY/challenges/smell_3_client
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+      args:
+        - DOCKER_REGISTRY=$DOCKER_REGISTRY

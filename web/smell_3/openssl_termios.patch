@@ -1,0 +1,48 @@
+diff --git a/crypto/ui/ui_openssl.c b/crypto/ui/ui_openssl.c
+index 5832a73cf5..511a1d2baf 100644
+--- a/crypto/ui/ui_openssl.c
++++ b/crypto/ui/ui_openssl.c
+@@ -178,41 +178,9 @@
+  * TERMIO, TERMIOS, VMS, MSDOS and SGTTY
+  */
+
+-#if defined(__sgi) && !defined(TERMIOS)
+-# define TERMIOS
+-# undef  TERMIO
+-# undef  SGTTY
+-#endif
+-
+-#if defined(linux) && !defined(TERMIO)
+-# undef  TERMIOS
+-# define TERMIO
+-# undef  SGTTY
+-#endif
+-
+-#ifdef _LIBC
+-# undef  TERMIOS
+-# define TERMIO
+-# undef  SGTTY
+-#endif
+-
+-#if !defined(TERMIO) && !defined(TERMIOS) && !defined(OPENSSL_SYS_VMS) && !defined(OPENSSL_SYS_MSDOS) && !defined(OPENSSL_SYS_MACINTOSH_CLASSIC) && !defined(MAC_OS_GUSI_SOURCE)
+-# undef  TERMIOS
+-# undef  TERMIO
+-# define SGTTY
+-#endif
+-
+-#if defined(OPENSSL_SYS_VXWORKS)
+-#undef TERMIOS
+-#undef TERMIO
+-#undef SGTTY
+-#endif
+-
+-#if defined(OPENSSL_SYS_NETWARE)
+-#undef TERMIOS
++// HACK musl has only termios.h...
+ #undef TERMIO
+-#undef SGTTY
+-#endif
++#define TERMIOS
+
+ #ifdef TERMIOS
+ # include <termios.h>

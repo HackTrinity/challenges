@@ -1,0 +1,20 @@
+ARG DOCKER_REGISTRY
+FROM $DOCKER_REGISTRY/chad/challbase
+
+RUN apk --no-cache add pcre zlib
+COPY build.sh /
+RUN ./build.sh && rm /build.sh
+
+RUN setcap 'cap_net_bind_service=+ep' /usr/local/nginx/sbin/nginx
+COPY pre-drop.server.sh /etc/challbase/pre-drop.sh
+
+COPY meme.jpg /opt/html/
+COPY pass.txt /tmp/
+RUN echo -n "admin:" > /usr/local/nginx/conf/.htpasswd && \
+    openssl passwd -stdin -apr1 < /tmp/pass.txt >> /usr/local/nginx/conf/.htpasswd && \
+    rm /tmp/pass.txt
+COPY nginx.conf server.key server.crt /usr/local/nginx/conf/
+
+
+EXPOSE 80/tcp
+CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]

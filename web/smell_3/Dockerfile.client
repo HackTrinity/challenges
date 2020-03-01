@@ -1,0 +1,11 @@
+ARG DOCKER_REGISTRY
+FROM $DOCKER_REGISTRY/chad/challbase
+
+RUN apk --no-cache add curl
+COPY pre-drop.client.sh /etc/challbase/pre-drop.sh
+
+COPY server.crt /etc/ssl/certs/
+RUN cat /etc/ssl/certs/server.crt >> /etc/ssl/certs/ca-certificates.crt
+COPY activity.sh pass.txt /
+
+CMD ["/activity.sh"]
