@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    image: $DOCKER_REGISTRY/challenges/nobody
+    build:
+      context: .
+      args:
+        - DOCKER_REGISTRY=$DOCKER_REGISTRY
+    ports:
+      - 1337:23
