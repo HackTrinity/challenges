@@ -1,11 +1,6 @@
-#include <stdbool.h>
-#include <stdint.h>
-#include <inttypes.h>
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
-#include <pthread.h>
 #include <unistd.h>
 #include <errno.h>
 #include <sys/types.h>
