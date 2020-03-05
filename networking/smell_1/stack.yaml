@@ -6,3 +6,8 @@ services:
       - CHALLENGE_IP=192.168.141.1/17
     networks:
       - challenge
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 128M

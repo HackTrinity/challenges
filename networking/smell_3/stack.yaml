@@ -6,9 +6,19 @@ services:
       - CHALLENGE_IP=192.168.143.1/17
     networks:
       - challenge
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
   client:
     image: $chad_docker_registry/challenges/smell_3_client
     environment:
       - CHALLENGE_IP=192.168.143.2/17
     networks:
       - challenge
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 128M

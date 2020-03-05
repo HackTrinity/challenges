@@ -13,3 +13,8 @@ services:
       - MAIL_TLS=yes
     networks:
       - challenge
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 768M
