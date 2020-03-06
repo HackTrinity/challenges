@@ -8,7 +8,7 @@ RUN apk --no-cache add dropbear musl-dev gcc && \
     adduser -G whisper -D whisper && \
     passwd -d whisper
 
-#COPY meme.jpg .
+COPY meme.jpg .
 COPY challenge-entrypoint.sh /
 COPY whisper.c /opt/whisper.c
 
