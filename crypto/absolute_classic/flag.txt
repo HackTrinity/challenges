@@ -1,0 +1,1 @@
+well done! The flag is HackTrinity{3v3n_h4rd3n3d_M1f4re_Cl4ss1c_EV1_1s_vuln3r4bl3}

@@ -1,0 +1,84 @@
+Student Card is Mifare Classic EV1 which is vulnerable to a genuine reader attack (key is recoverable by snooping on genuine auth session).
+
+Download and compile https://github.com/Proxmark/proxmark3/blob/master/tools/mfkey/
+
+FOllow instructions in https://github.com/Proxmark/proxmark3/blob/master/tools/mfkey/example_trace.txt
+
+
+Combine dec1, dec3, dec5, dec1, dec3, dec5 below, chopping off last 2 bytes of each (I think that's a CRC).
+
+➜  proxmark3 git:(master) ✗ ./tools/mfkey/mfkey64 0bbf2454 d4482369 98a78eb5 bedcd9a2 bd8a068d e1d37161 626823185aeb431e024cca527e49b627b5be 5d0c821f 44b3a7596165914279cfb773fc9985700d1f 338a1a39 a0fb925994d640fa4c42d3a8209dcdbd8d28
+MIFARE Classic key recovery - based on 64 bits of keystream
+Recover key from only one complete authentication!
+
+Recovering key for:
+   uid: 0bbf2454
+    nt: d4482369
+  {nr}: 98a78eb5
+  {ar}: bedcd9a2
+  {at}: bd8a068d
+{enc0}: e1d37161
+{enc1}: 626823185aeb431e024cca527e49b627b5be
+{enc2}: 5d0c821f
+{enc3}: 44b3a7596165914279cfb773fc9985700d1f
+{enc4}: 338a1a39
+{enc5}: a0fb925994d640fa4c42d3a8209dcdbd8d28
+
+LFSR successors of the tag challenge:
+  nt' : 2122fc4f
+  nt'': 83efef96
+Time spent in lfsr_recovery64(): 0.16 seconds
+
+Keystream used to generate {ar} and {at}:
+   ks2: 9ffe25ed
+   ks3: 3e65e91b
+
+Decrypted communication:
+{dec0}: 300c6e62
+{dec1}: 77656c6c20646f6e65212054686520663ce6
+{dec2}: 300de773
+{dec3}: 6c6167206973204861636b5472696e697960
+{dec4}: 300e7c41
+{dec5}: 74797b3376336e5f68347264336e336473fe
+
+Found Key: [4861994e2b4b]
+
+
+
+➜  proxmark3 git:(master) ✗ ./tools/mfkey/mfkey64 0bbf2454 1c7ba061 0f0ecb07 0b0f9c7f 491baf67 99c97511 ca1b4ae729b8e749aec94dfec9f5f4375ce9 827cd8f7 c0c50a58010cb77b4a34e40cc3de4dff8538 c67c115b 5933885842f0718a01562d6b86b3aa86a8e1 c5fdc80b      
+MIFARE Classic key recovery - based on 64 bits of keystream
+Recover key from only one complete authentication!
+
+Recovering key for:
+   uid: 0bbf2454
+    nt: 1c7ba061
+  {nr}: 0f0ecb07
+  {ar}: 0b0f9c7f
+  {at}: 491baf67
+{enc0}: 99c97511
+{enc1}: ca1b4ae729b8e749aec94dfec9f5f4375ce9
+{enc2}: 827cd8f7
+{enc3}: c0c50a58010cb77b4a34e40cc3de4dff8538
+{enc4}: c67c115b
+{enc5}: 5933885842f0718a01562d6b86b3aa86a8e1
+{enc6}: c5fdc80b
+
+LFSR successors of the tag challenge:
+  nt' : 42dc3836
+  nt'': c03c8e05
+Time spent in lfsr_recovery64(): 0.13 seconds
+
+Keystream used to generate {ar} and {at}:
+   ks2: 49d3a449
+   ks3: 89272162
+
+Decrypted communication:
+{dec0}: 301083b8
+{dec1}: 5f4d31663472655f436c34737331635f60b3
+{dec2}: 30110aa9
+{dec3}: 4556315f31735f76756c6e337234626cce82
+{dec4}: 3012919b
+{dec5}: 337d0000000000000000000000000000f17c
+{dec6}: 500057cd
+
+Found Key: [7486c2c34e0c]
