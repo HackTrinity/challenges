@@ -1,0 +1,31 @@
+version: '3'
+services:
+  fsbuilder:
+    image: $DOCKER_REGISTRY/challenges/pf_senseless/fsbuilder
+    build:
+      dockerfile: Dockerfile.fsbuilder
+      context: .
+    privileged: true
+    volumes:
+      - ./fsout:/opt/fsbuild/out
+    command: ./build.sh
+  kbuilder:
+    image: $DOCKER_REGISTRY/challenges/pf_senseless/kbuilder
+    build:
+      dockerfile: Dockerfile.kbuilder
+      context: .
+      args:
+        - KERNEL_VERSION=5.4.24
+    volumes:
+      - ./kout:/opt/kbuild
+      - ./fsout/initramfs:/opt/kbuild/initramfs:ro
+  host:
+    image: $DOCKER_REGISTRY/challenges/pf_senseless/host
+    build:
+      context: .
+      args:
+        - DOCKER_REGISTRY=$DOCKER_REGISTRY
+    environment:
+      - DEBUGGER_IP=192.168.147.2/17
+    cap_add:
+      - NET_ADMIN

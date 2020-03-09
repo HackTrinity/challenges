@@ -1,0 +1,14 @@
+FROM ubuntu:18.04
+
+RUN apt-get update && apt-get install -y netbase wget qemu-user-static
+
+ADD https://github.com/alpinelinux/alpine-chroot-install/raw/master/alpine-chroot-install /usr/local/bin/
+RUN chmod +x /usr/local/bin/alpine-chroot-install
+
+WORKDIR /opt/fsbuild
+ADD https://github.com/alpinelinux/alpine-make-rootfs/raw/master/alpine-make-rootfs ./
+RUN chmod +x alpine-make-rootfs
+COPY fsbuild/ ./
+
+COPY fsbuild_bootstrap.sh /
+ENTRYPOINT ["/fsbuild_bootstrap.sh"]

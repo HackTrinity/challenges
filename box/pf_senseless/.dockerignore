@@ -1,0 +1,4 @@
+/fsout/*
+!/fsout/rootfs.f2fs.gz
+/kout/*
+!/kout/kernel.gz

@@ -1,0 +1,14 @@
+FROM archlinux AS kbuilder
+
+COPY archmirrors.txt /etc/pacman.d/mirrorlist
+RUN pacman -Syu --needed --noconfirm base-devel bc inetutils aarch64-linux-gnu-gcc
+
+WORKDIR /opt/kbuild
+
+ARG KERNEL_VERSION
+ENV KERNEL_VERSION=$KERNEL_VERSION
+ADD "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-$KERNEL_VERSION.tar.xz" /usr/local/src/
+COPY kernel_config /usr/local/src/
+
+COPY kbuild.sh /
+ENTRYPOINT ["/kbuild.sh"]

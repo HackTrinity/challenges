@@ -1,0 +1,13 @@
+version: '3.5'
+services:
+  app:
+    image: $chad_docker_registry/challenges/pf_senseless/host
+    environment:
+      - DEBUGGER_IP=192.168.147.2/17
+    networks:
+      - challenge
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G

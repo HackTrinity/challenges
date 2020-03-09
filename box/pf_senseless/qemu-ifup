@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+ip link set dev "$1" up
+ip link set dev "$1" master vm-bridge

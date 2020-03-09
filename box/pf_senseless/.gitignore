@@ -1,0 +1,4 @@
+/fsout/*
+!/fsout/.gitkeep
+/kout/*
+!/kout/.gitkeep
