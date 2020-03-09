@@ -15,7 +15,7 @@
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
 
-#define KERNEL_DEV "/dev/vda"
+#define KERNEL_DEV "/dev/mmcblk0"
 #define UPGRADE_FILE "/upgrade.f2fs.gz"
 
 #define PORT 6969

@@ -41,7 +41,7 @@ build_rootfs() {
     apk add f2fs-tools
     truncate -s "$2" "$1.f2fs"
     mkfs.f2fs -f -l root "$1.f2fs"
-    mount "$1.f2fs" /mnt
+    mount -v -t f2fs "$1.f2fs" /mnt
     mv "$1/"* /mnt/
     umount /mnt
 

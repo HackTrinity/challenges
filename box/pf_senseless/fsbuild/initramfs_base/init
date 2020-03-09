@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-ROOT="/dev/vdb"
+ROOT="/dev/mmcblk1"
 UPGRADE_FILE="upgrade.f2fs.gz"
 
 

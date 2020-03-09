@@ -22,8 +22,12 @@ exec qemu-system-aarch64 \
     -cpu max \
     -m 768M \
     -kernel kernel.img \
-    -drive if=virtio,format=raw,file=kernel.img \
-    -drive if=virtio,format=raw,file=rootfs.img \
+    -blockdev raw,node-name=kernel_mmc,file.driver=file,file.filename=kernel.img \
+    -device sdhci-pci \
+    -device sd-card,drive=kernel_mmc \
+    -blockdev raw,node-name=rootfs_mmc,file.driver=file,file.filename=rootfs.img \
+    -device sdhci-pci \
+    -device sd-card,drive=rootfs_mmc \
     -nic tap,id=lan,downscript=no \
     -chardev socket,id=debug,server,host=0.0.0.0,port=21 \
     -serial chardev:debug
