@@ -20,7 +20,7 @@ exec qemu-system-aarch64 \
     -monitor none \
     -machine virt \
     -cpu max \
-    -m 768M \
+    -m 512M \
     -kernel kernel.img \
     -blockdev raw,node-name=kernel_mmc,file.driver=file,file.filename=kernel.img \
     -device sdhci-pci \
