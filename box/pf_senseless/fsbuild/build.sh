@@ -26,9 +26,15 @@ build_initramfs() {
 }
 
 build_rootfs() {
-    gcc -o upgrade_server upgrade/server.c
+    packages="alpine-base dropbear dropbear-openrc haveged haveged-openrc"
 
-    packages="alpine-base dropbear dropbear-openrc"
+    if [ -n "$3" ]; then
+        packages="$packages gmp"
+        apk add gmp-dev
+        gcc -DSIG_CHECK -o upgrade_server upgrade/sha1.c upgrade/sigcheck.c upgrade/server.c -lgmp
+    else
+        gcc -o upgrade_server upgrade/server.c
+    fi
 
     ./alpine-make-rootfs \
         --branch "$ALPINE_BRANCH" \
@@ -51,3 +57,4 @@ build_rootfs() {
 [ -f out/busybox ] || build_busybox "$BUSYBOX_VERSION" out/busybox
 [ -d out/initramfs ] || build_initramfs out/busybox out/initramfs
 [ -f out/rootfs.f2fs.gz ] || build_rootfs out/rootfs 256M
+[ -f out/rootfs.signed.f2fs.gz ] || build_rootfs out/rootfs.signed 256M yes

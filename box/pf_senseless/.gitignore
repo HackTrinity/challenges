@@ -2,3 +2,4 @@
 !/fsout/.gitkeep
 /kout/*
 !/kout/.gitkeep
+/pf_senseless.fw

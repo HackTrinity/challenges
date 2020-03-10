@@ -45,11 +45,12 @@ EOF
 chmod +x /etc/init.d/upgrade-server
 
 # Uncomment to enable login on the serial console at boot
-#sed -i '/^#ttyS0.*getty/s/^#//' /etc/inittab
-#echo "ttyS0" >> /etc/securetty
+#echo "console::respawn:/sbin/getty -L console 115200 vt100" >> /etc/inittab
+
 > /etc/fstab
 rc-update add networking boot
 rc-update add fix-apk-cache
+rc-update add haveged
 rc-update add dropbear
 rc-update add upgrade-server
 

@@ -30,3 +30,15 @@ services:
       - DEBUGGER_IP=192.168.147.2/17
     cap_add:
       - NET_ADMIN
+  host_signed:
+    image: $DOCKER_REGISTRY/challenges/pf_senseless/host_signed
+    build:
+      context: .
+      args:
+        - DOCKER_REGISTRY=$DOCKER_REGISTRY
+        - ROOTFS_IN=fsout/rootfs.signed.f2fs.gz
+    environment:
+      - CHALLENGE_IP=
+      - DEBUGGER_IP=192.168.147.2/17
+    cap_add:
+      - NET_ADMIN

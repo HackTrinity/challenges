@@ -11,7 +11,8 @@ WORKDIR /opt/pf_senseless
 COPY kout/kernel.gz kernel.img
 RUN truncate -s 16M kernel.img
 
-COPY fsout/rootfs.f2fs.gz rootfs.img.gz
+ARG ROOTFS_IN=fsout/rootfs.f2fs.gz
+ADD "$ROOTFS_IN" rootfs.img.gz
 RUN gunzip rootfs.img.gz
 
 COPY qemu-ifup /etc/qemu-ifup
