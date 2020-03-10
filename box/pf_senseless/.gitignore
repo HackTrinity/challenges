@@ -3,3 +3,5 @@
 /kout/*
 !/kout/.gitkeep
 /pf_senseless.fw
+/linux-*/
+/linux-*.tar.xz

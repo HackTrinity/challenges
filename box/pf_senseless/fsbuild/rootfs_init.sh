@@ -25,7 +25,7 @@ chmod +x /etc/init.d/fix-apk-cache
 cat > /etc/network/interfaces <<-EOF
 auto eth0
 iface eth0 inet static
-    address 192.168.147.1
+    address $1
     netmask 255.255.128.0
 EOF
 
@@ -57,3 +57,7 @@ rc-update add upgrade-server
 echo "DROPBEAR_OPTS=\"-g\"" > /etc/conf.d/dropbear
 mkdir -p /root/.ssh
 cp /mnt/id_rsa.pub /root/.ssh/authorized_keys
+
+if [ -n "$2" ]; then
+    echo "$2" > /flag.txt
+fi

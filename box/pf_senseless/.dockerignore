@@ -3,3 +3,5 @@
 !/fsout/rootfs.signed.f2fs.gz
 /kout/*
 !/kout/kernel.gz
+/linux-*/
+/linux-*.tar.xz
