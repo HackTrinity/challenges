@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdio.h>
 
 #include <gmp.h>
 
@@ -8,6 +9,12 @@ const char *key_n_hex = "a42dc4983629269abee64144ea3358efce63f646236839d87fe959e
 const char *key_e_hex = "10001";
 
 bool validate_signature(const uint8_t signature[256], const unsigned char hash[20]) {
+    fputs("upgrade sha1: ", stderr);
+    for (size_t i = 0; i < 20; i++) {
+        fprintf(stderr, "%02x", hash[i]);
+    }
+    fputc('\n', stderr);
+
     mpz_t n, e, sig, decrypted_sig;
     mpz_inits(n, e, sig, decrypted_sig, NULL);
     mpz_set_str(n, key_n_hex, 16);
@@ -20,5 +27,11 @@ bool validate_signature(const uint8_t signature[256], const unsigned char hash[2
     mpz_clears(n, e, sig, decrypted_sig, NULL);
 
     unsigned char *decrypted_hash = decrypted_bytes + (256 - 20);
-    return strcmp(hash, decrypted_hash) == 0;
+    fputs("signature sha1: ", stderr);
+    for (size_t i = 0; i < 20; i++) {
+        fprintf(stderr, "%02x", decrypted_hash[i]);
+    }
+    fputc('\n', stderr);
+
+    return strncmp(hash, decrypted_hash, 20) == 0;
 }

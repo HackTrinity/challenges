@@ -158,6 +158,7 @@ void handle_client(int client, struct sockaddr_in addr) {
     }
 #endif
 
+#ifndef LOCAL
     if (kernel) {
         int out = open(KERNEL_DEV, O_RDWR);
         if (out == -1) {
@@ -184,13 +185,16 @@ void handle_client(int client, struct sockaddr_in addr) {
             goto die;
         }
     }
+#endif
 
     fprintf(stderr, "%s:%d issued an upgrade, rebooting...\n", addr_str, addr.sin_port);
     free(rootfs);
     free(kernel);
     res_client(client, RES_OK);
     close(client);
+#ifndef LOCAL
     system("poweroff");
+#endif
     return;
 die:
     free(rootfs);
@@ -199,6 +203,7 @@ die:
 }
 
 int main(int argc, char **argv) {
+#ifndef LOCAL
     int console = open("/dev/console", O_WRONLY);
     if (console == -1) {
         perror("open()");
@@ -211,6 +216,7 @@ int main(int argc, char **argv) {
     }
     close(console);
     setbuf(stderr, NULL);
+#endif
 
     int server = socket(AF_INET, SOCK_STREAM, 0);
     if (server == -1) {
