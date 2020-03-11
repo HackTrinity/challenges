@@ -39,6 +39,7 @@ build_rootfs() {
 
         ip=192.168.147.1
     fi
+    gcc -o advertise advertise.c
 
     ./alpine-make-rootfs \
         --branch "$ALPINE_BRANCH" \

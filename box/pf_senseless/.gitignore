@@ -5,3 +5,5 @@
 /pf_senseless.fw
 /linux-*/
 /linux-*.tar.xz
+/pyinstaller_build/
+/gui_firmtool.exe

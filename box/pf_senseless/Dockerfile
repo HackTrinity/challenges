@@ -12,7 +12,7 @@ COPY kout/kernel.gz kernel.img
 RUN truncate -s 16M kernel.img
 
 ARG ROOTFS_IN=fsout/rootfs.f2fs.gz
-ADD "$ROOTFS_IN" rootfs.img.gz
+COPY "$ROOTFS_IN" rootfs.img.gz
 RUN gunzip rootfs.img.gz
 
 COPY qemu-ifup /etc/qemu-ifup
