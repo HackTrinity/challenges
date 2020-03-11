@@ -2,8 +2,9 @@
 !/fsout/.gitkeep
 /kout/*
 !/kout/.gitkeep
-/pf_senseless.fw
+/*.fw
 /linux-*/
 /linux-*.tar.xz
+/__pycache__/
 /pyinstaller_build/
 /gui_firmtool.exe
