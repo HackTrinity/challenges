@@ -8,4 +8,5 @@ gcc -DFLAG="\"$FLAG\"" -o /usr/local/bin/whisper /opt/whisper.c
 rm /opt/whisper.c
 chmod u=x,g=x,o=x /usr/local/bin/whisper
 
+rm -- "$0"
 exec dropbear -RFEwB -G whisper
