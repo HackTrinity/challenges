@@ -1,0 +1,1 @@
+Use masscan or (if they've indexed it in time, Shodan.io/Censys) to find hosts listening on port 80 with the matching page title "Last remaining loo roll".
