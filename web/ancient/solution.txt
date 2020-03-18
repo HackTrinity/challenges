@@ -1,0 +1,4 @@
+Each character in answer is MD5'd individually with a fixed salt, then MD5'd again
+
+Need to brute force each character to figure it out
+Some hints: characters in answers we know may also appear in flag.
