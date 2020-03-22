@@ -23,7 +23,7 @@ they were created.
 1 | 600 | Box | [Nobody](box/nobody)
 7 | 600 | Box | [Whisper](box/whisper)
 1 | 400 | Reversing | [Locked Out](reversing/locked_out)
-6 | 400 | Exploitation | [Locked Out 2](exploit/locked_out)
+6 | 400 | Exploitation | [Locked Out 2](exploit/locked_out_2)
 5 | 600 | Crypto | [An Absolute Classic](crypto/absolute_classic)
 2 | 600 | Box | [pfSenseless](box/pf_senseless)
 4 | 600 | Box | [pfSenseless 2](box/pf_senseless)
@@ -33,7 +33,7 @@ they were created.
 1 | 400 | Forensics | [Out of Office](forensics/out_of_office)
 1 | 200 | Crypto | [Wrapped Up](crypto/wrapped_up)
 2 | 200 | Forensics | [Panic](forensics/panic)
-6 | 200 | Recon | [Imagery](recon/imagery)
+6 | 200 | Recon | Imagery
 7 | 200 | Trivia | Who's the King
 5 | 400 | Crypto | [Numbers](crypto/numbers)
 2 | 400 | Forensics | [Stegosauraus](forensics/stegosaurus)
