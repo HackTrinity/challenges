@@ -1,0 +1,9 @@
+Download and install masscan, set up ip tables rules, create a custom hello.txt file as follows:
+
+GET / HTTP/1.1\r\nHost: v2vt5lzhxfxqjwet3xr3uhjvxehmornn7oovqvlyalaz7bvtaqfalhqd.onion\r\nUser-Agent: curl/7.47.0\r\nAccept: */*\r\n\r\n
+
+Then run following:
+
+bin/masscan 0.0.0.0/0 -p80 --banners --hello-file[80] /tmp/hello.txt --source-port 61000 --excludefile data/exclude.conf --rate 100000000 | grep '\[title\] Come get yall drugs'
+
+Should take 12 hours or less. Don't do this at home kids! Use a port scanning friendly provider.
